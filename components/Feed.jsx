@@ -2,7 +2,7 @@ import React from "react";
 
 // show prompts
 const Feed = () => {
-  return <div>Feed</div>;
+  return <div>Kevin5_lee == ycl818</div>;
 };
 
 export default Feed;
