@@ -2,7 +2,7 @@ import NextAuth from "next-auth";
 import GoogleProvider from "next-auth/providers/google";
 import { signIn } from "next-auth/react";
 
-import { connectTODB } from "@utils/database";
+import { connectToDB } from "@utils/database";
 import User from "@models/user";
 
 // console.log({
@@ -30,7 +30,7 @@ const handler = NextAuth({
     async signIn({ profile }) {
       try {
         // serverless ->
-        await connectTODB();
+        await connectToDB();
 
         // check if a user already exists
         const userExists = await User.findOne({
