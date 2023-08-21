@@ -1,9 +1,20 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import PromptCard from "./PromptCard";
 
 const PromptCardList = ({ data, handleTagClick }) => {
-  <div className="mt-16 prompt_layout"></div>;
+  return (
+    <div className="mt-16 prompt_layout">
+      {data.map((post) => (
+        <PromptCard
+          key={post._id}
+          post={post}
+          handleTagClick={handleTagClick}
+        />
+      ))}
+    </div>
+  );
 };
 
 // show prompts
@@ -14,7 +25,7 @@ const Feed = () => {
 
   useEffect(() => {
     const fetchPosts = async () => {
-      const response = await fetch("/apu/prompt");
+      const response = await fetch("/api/prompt");
       const data = await response.json();
       setPosts(data);
     };
