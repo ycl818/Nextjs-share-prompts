@@ -4,9 +4,13 @@ import Link from "next/link";
 import Image from "next/image";
 import { useState, useEffect } from "react";
 import { signIn, signOut, useSession, getProviders } from "next-auth/react";
+import { usePathname, useRouter } from "next/navigation";
 
 const Nav = () => {
+  const pathName = usePathname();
+
   const { data: session } = useSession();
+  const router = useRouter();
 
   const [providers, setProviders] = useState(null);
   const [toggleDropDown, setToggleDropDown] = useState(false);
@@ -40,7 +44,15 @@ const Nav = () => {
             <Link href="/create-prompt" className="black_btn">
               Create Post
             </Link>
-            <button type="button" onClick={signOut} className="outline_btn">
+            <button
+              type="button"
+              onClick={() => {
+                signOut({
+                  callbackUrl: `/`,
+                });
+              }}
+              className="outline_btn"
+            >
               Sign Out
             </button>
 
