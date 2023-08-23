@@ -18,6 +18,12 @@ const CreatePrompt = () => {
     e.preventDefault();
     setSubmitting(true);
 
+    if (!post.prompt || !post.tag) {
+      confirm("Please make sure you enter the prompt and tag");
+      setSubmitting(false);
+      return;
+    }
+
     try {
       const response = await fetch("/api/prompt/new", {
         method: "POST",
